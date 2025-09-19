@@ -6,7 +6,17 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import {
+  StatusBar,
+  StyleSheet,
+  useColorScheme,
+  View,
+} from 'react-native';
+import {
+  onOrientationChange,
+  startOrientationTracking,
+} from 'react-native-orientation-turbo';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -14,6 +24,20 @@ import {
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  const [currOrientaion, setCurrOrientaion] = useState('');
+  useEffect(() => {
+    console.log(currOrientaion);
+
+    startOrientationTracking();
+
+    const subscribe = onOrientationChange(({ orientation }) => {
+      setCurrOrientaion(orientation);
+    });
+
+    return () => {
+      subscribe.remove();
+    };
+  }, [currOrientaion]);
 
   return (
     <SafeAreaProvider>
