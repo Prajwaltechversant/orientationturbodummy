@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
+  Text,
+  TextInput,
   useColorScheme,
   View,
 } from 'react-native';
@@ -48,14 +50,10 @@ function App() {
 }
 
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
   return (
     <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+      <Text>Textinput</Text>
+      <TextInput style={{ width: 100, height: 20,backgroundColor:'white',color:'black' }} />
     </View>
   );
 }
@@ -63,6 +61,7 @@ function AppContent() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent:'center',alignItems:'center'
   },
 });
 
